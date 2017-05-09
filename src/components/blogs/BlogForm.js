@@ -2,6 +2,9 @@ import React, {PropTypes} from 'react';
 import TextInput from '../common/TextInput';
 
 class BlogForm extends React.Component {  
+   constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div>
@@ -13,8 +16,8 @@ class BlogForm extends React.Component {
             onChange={this.props.onChange}/>
 
           <TextInput
-            name="content"
-            label="content"
+            name="text"
+            label="text"
             value={this.props.blog.text}
             onChange={this.props.onChange}/>
 

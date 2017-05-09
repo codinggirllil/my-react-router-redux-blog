@@ -1,20 +1,14 @@
 import * as types from './actionTypes';  
 import blogApi from '../api/BlogApi';
-import stateStore from '../reducers/stateStore';
 
 export function loadBlogs() {  
-  // return function(dispatch) {
-  //   return blogApi.getAllBlogs().then(blogs => {
-  //     debugger;
-  //     dispatch(loadBlogsSuccess(blogs.blog.posts));
-  //   }).catch(error => {
-  //     throw(error);
-  //   });
-  // };
-  return {
-  	type: 'LOAD_BLOGS_SUCCESS', 
-  	blogs: stateStore.blogs
-  }
+  return function(dispatch) {
+    return blogApi.getAllBlogs().then(blogs => {
+      dispatch(loadBlogsSuccess(blogs.blog));
+    }).catch(error => {
+      throw(error);
+    });
+  };
 }
 
 export function loadBlogsSuccess(blogs) {  
@@ -22,14 +16,14 @@ export function loadBlogsSuccess(blogs) {
 }
 
 export function updateBlog(blog) {  
-  // return function (dispatch) {
-  //   return blogApi.updateBlog(blog).then(responseBlog => {
-  //     dispatch(updateBlogSuccess(responseBlog));
-  //   }).catch(error => {
-  //     throw(error);
-  //   });
-  // };
-  return {type: types.UPDATE_BLOG_SUCCESS, blog}
+  return function (dispatch) {
+    debugger;
+    return blogApi.updateBlog(blog).then(responseBlog => {
+      dispatch(updateBlogSuccess(responseBlog));
+    }).catch(error => {
+      throw(error);
+    });
+  };
 }
 
 export function updateBlogSuccess(blog) {  

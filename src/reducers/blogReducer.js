@@ -5,9 +5,9 @@ import {browserHistory} from 'react-router';
 export default function blogReducer(state = initialState.blogs, action) {  
   switch(action.type) {
     case types.LOAD_BLOGS_SUCCESS:
-      return action.blogs
+      return action.blogs.posts
     case types.CREATE_BLOG_SUCCESS:
-      browserHistory.push(`/blogs/${action.blog.id}`)
+      browserHistory.push('/blogs/${action.blog.id}')
       return [
         ...state.filter(blog => blog.id !== action.blog.id),
         Object.assign({}, action.blog)
