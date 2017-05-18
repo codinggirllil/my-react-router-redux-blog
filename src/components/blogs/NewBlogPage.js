@@ -1,7 +1,7 @@
-import React, {PropTypes} from 'react';  
-import {connect} from 'react-redux';  
-import {bindActionCreators} from 'redux';  
-import * as blogActions from '../../actions/blogActions';  
+import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as blogActions from '../../actions/blogActions';
 import BlogForm from './BlogForm';
 
 
@@ -11,7 +11,7 @@ class NewBlogPage extends React.Component {
     super(props);
     this.state = {
       blog: {
-        title: '', 
+        title: '',
         text: ''
       },
       saving: false
@@ -29,6 +29,7 @@ class NewBlogPage extends React.Component {
 
   saveBlog(event) {
     event.preventDefault();
+    debugger;
     this.props.actions.createBlog(this.state.blog)
   }
 
@@ -36,8 +37,8 @@ class NewBlogPage extends React.Component {
     return (
       <div>
         <h1>new blog</h1>
-        <BlogForm 
-          blog={this.state.blog} 
+        <BlogForm
+          blog={this.state.blog}
           onSave={this.saveBlog}
           onChange={this.updateBlogState}/>
       </div>
@@ -45,19 +46,19 @@ class NewBlogPage extends React.Component {
   }
 }
 
-NewBlogPage.propTypes = {  
+NewBlogPage.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {  
+function mapStateToProps(state, ownProps) {
   return {}
 }
 
-function mapDispatchToProps(dispatch) {  
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(blogActions, dispatch)
   };
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewBlogPage);  
+export default connect(mapStateToProps, mapDispatchToProps)(NewBlogPage);

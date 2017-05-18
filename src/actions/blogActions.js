@@ -1,7 +1,7 @@
-import * as types from './actionTypes';  
+import * as types from './actionTypes';
 import blogApi from '../api/BlogApi';
 
-export function loadBlogs() {  
+export function loadBlogs() {
   return function(dispatch) {
     return blogApi.getAllBlogs().then(blogs => {
       dispatch(loadBlogsSuccess(blogs.blog));
@@ -11,13 +11,12 @@ export function loadBlogs() {
   };
 }
 
-export function loadBlogsSuccess(blogs) {  
+export function loadBlogsSuccess(blogs) {
   return {type: 'LOAD_BLOGS_SUCCESS', blogs};
 }
 
-export function updateBlog(blog) {  
+export function updateBlog(blog) {
   return function (dispatch) {
-    debugger;
     return blogApi.updateBlog(blog).then(responseBlog => {
       dispatch(updateBlogSuccess(responseBlog));
     }).catch(error => {
@@ -26,30 +25,32 @@ export function updateBlog(blog) {
   };
 }
 
-export function updateBlogSuccess(blog) {  
+export function updateBlogSuccess(blog) {
   return {type: types.UPDATE_BLOG_SUCCESS, blog}
 }
 
-export function createBlogSuccess(blog) {  
+export function createBlogSuccess(blog) {
+  debugger;
   return {type: types.CREATE_BLOG_SUCCESS, blog}
 }
 
-export function createBlog(blog) {  
-  return function (dispatch) {
-    return blogApi.createBlog(blog).then(responseBlog => {
-      dispatch(createBlogSuccess(responseBlog));
-      return responseBlog;
+export function createBlog(blog) {
+  return function(dispatch) {
+    return blogApi.createBlog(blog).then(response => {
+      debugger;
+      dispatch(createCatSuccess(response));
+      return response;
     }).catch(error => {
       throw(error);
-    });
-  };
+    })
+  }
 }
 
-export function deleteBlogSuccess(blog) {  
+export function deleteBlogSuccess(blog) {
   return {type: types.DELETE_BLOG_SUCCESS, blog}
 }
 
-export function deleteBlog(blog) {  
+export function deleteBlog(blog) {
   return function(dispatch) {
     return blogApi.deleteBlog(blog).then(() => {
       console.log('Deleted ${blog.id}')

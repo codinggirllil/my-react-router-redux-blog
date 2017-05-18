@@ -1,13 +1,14 @@
-import * as types from '../actions/actionTypes';  
+import * as types from '../actions/actionTypes';
 import initialState from './initialState';
 import {browserHistory} from 'react-router';
 
-export default function blogReducer(state = initialState.blogs, action) {  
+export default function blogReducer(state = initialState.blogs, action) {
   switch(action.type) {
     case types.LOAD_BLOGS_SUCCESS:
       return action.blogs.posts
     case types.CREATE_BLOG_SUCCESS:
-      browserHistory.push('/blogs/${action.blog.id}')
+      debugger;
+      browserHistory.push(`/blogs/${action.blog.id}`)
       return [
         ...state.filter(blog => blog.id !== action.blog.id),
         Object.assign({}, action.blog)
@@ -26,7 +27,7 @@ export default function blogReducer(state = initialState.blogs, action) {
       browserHistory.push('/blogs');
       return newState;
     }
-    default: 
+    default:
       return state;
   }
 }

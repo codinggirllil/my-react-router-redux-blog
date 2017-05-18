@@ -23,6 +23,7 @@ class BlogPage extends React.Component {
     const blog = this.state.blog;
     blog[field] = event.target.value;
     return this.setState({blog: blog});
+    //update state onsave rather than on change
   }
 
   saveBlog(event) {

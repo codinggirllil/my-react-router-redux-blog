@@ -12,12 +12,14 @@ class BlogForm extends React.Component {
           <TextInput
             name="title"
             label="title"
+            ref="title"
             value={this.props.blog.title}
             onChange={this.props.onChange}/>
 
           <TextInput
             name="text"
             label="text"
+            ref="title"
             value={this.props.blog.text}
             onChange={this.props.onChange}/>
 
